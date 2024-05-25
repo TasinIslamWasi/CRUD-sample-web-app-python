@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Data List</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Account Number</th>
+            <th>Phone</th>
+            <th>Deposit Amount</th>
+            <th>Actions</th>
+        </tr>
+        {% for account in accounts %}
+        <tr>
+            <td>{{ account.name }}</td>
+            <td>{{ account.account_number }}</td>
+            <td>{{ account.phone }}</td>
+            <td>{{ account.deposit_amount }}</td>
+            <td>
+                <a href="{{ url_for('edit', id=account.id) }}">Edit</a>
+                <a href="{{ url_for('delete', id=account.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Go back</a>
+    <br>
+    <a href="{{ url_for('export_excel') }}">Export to Excel</a>
+    <a href="{{ url_for('export_pdf') }}">Export to PDF</a>
+</body>
+</html>
